@@ -50,9 +50,18 @@ public class TestDivider {
 	}
 
 	private void divideOnTestTime(List<List<String>> parallelLists, List<Integer> testListTime, int testTime, Queue<Map.Entry<String, Integer>> durationQueue) {
-		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<>(
-			(a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : a.getValue().compareTo(b.getValue())
-		);
+		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<Map.Entry<Integer, Integer>>(
+		new Comparator<Map.Entry<Integer, Integer>>() {
+        @Override
+        public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
+            if (a.getValue() == b.getValue()) {
+                return a.getKey().compareTo(b.getKey());
+            } else {
+                return a.getValue().compareTo(b.getValue());
+            }
+        }
+    }
+);
 		int limitFactor = testTime;
 		int index = 0;
 		while (!durationQueue.isEmpty()) {
