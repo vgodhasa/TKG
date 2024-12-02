@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import com.ibm.management.OperatingSystemMXBean;
+//import com.sun.management.OperatingSystemMXBean;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
 
 public class MachineInfo {
 	public static final String[] UNAME_CMD = new String[] {"uname", "-a"};
