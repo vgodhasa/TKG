@@ -30,7 +30,7 @@ import java.util.Collections;
 
 //import com.sun.management.OperatingSystemMXBean;
 import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
+//import java.lang.management.OperatingSystemMXBean;
 
 import com.ibm.lang.management.OperatingSystemMXBean;
 import com.ibm.lang.management.ManagementFactory;
