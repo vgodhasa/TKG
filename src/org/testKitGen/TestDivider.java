@@ -50,18 +50,9 @@ public class TestDivider {
 	}
 
 	private void divideOnTestTime(List<List<String>> parallelLists, List<Integer> testListTime, int testTime, Queue<Map.Entry<String, Integer>> durationQueue) {
-		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<Map.Entry<Integer, Integer>>(
-		new Comparator<Map.Entry<Integer, Integer>>() {
-        @Override
-        public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
-            if (a.getValue() == b.getValue()) {
-                return a.getKey().compareTo(b.getKey());
-            } else {
-                return a.getValue().compareTo(b.getValue());
-            }
-        }
-    }
-);
+		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<>(
+			(a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : a.getValue().compareTo(b.getValue())
+		);
 		int limitFactor = testTime;
 		int index = 0;
 		while (!durationQueue.isEmpty()) {
@@ -94,17 +85,9 @@ public class TestDivider {
 	}
 
 	private void divideOnMachineNum(List<List<String>> parallelLists, List<Integer> testListTime, int numOfMachines, Queue<Map.Entry<String, Integer>> durationQueue) {
-		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<Map.Entry<Integer, Integer>>(
-		new Comparator<Map.Entry<Integer, Integer>>() {
-        @Override
-        public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
-            if (a.getValue().equals(b.getValue())) {
-                return a.getKey().compareTo(b.getKey());
-            } else {
-                return a.getValue().compareTo(b.getValue());
-            }
-        }
-    });
+		Queue<Map.Entry<Integer, Integer>> machineQueue = new PriorityQueue<>(
+			(a, b) -> a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : a.getValue().compareTo(b.getValue())
+		);
 		for (int i = 0; i < numOfMachines; i++) {
 			parallelLists.add(new ArrayList<String>());
 			testListTime.add(0);
@@ -286,18 +269,9 @@ public class TestDivider {
 	}
 
 	private Queue<Map.Entry<String, Integer>> createDurationQueue() {
-	Queue<Map.Entry<String, Integer>> durationQueue = new PriorityQueue<Map.Entry<String, Integer>>(
-    new Comparator<Map.Entry<String, Integer>>() {
-        @Override
-        public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) {
-            // Compare by value first, then by key if values are equal
-            if (a.getValue().equals(b.getValue())) {
-                return b.getKey().compareTo(a.getKey());
-            } else {
-                return b.getValue().compareTo(a.getValue());
-            }
-        }
-    });
+		Queue<Map.Entry<String, Integer>> durationQueue = new PriorityQueue<>(
+			(a, b) -> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : b.getValue().compareTo(a.getValue())
+		);
 
 		List<String> allTests = new ArrayList<String>();
 		allTests.addAll(testsToExecute);
