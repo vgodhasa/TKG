@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.lang.management.ManagementFactory;
+//import java.lang.management.ManagementFactory;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 //import com.sun.management.OperatingSystemMXBean;
-import java.lang.management.ManagementFactory;
+//import java.lang.management.ManagementFactory;
 //import java.lang.management.OperatingSystemMXBean;
 
 import com.ibm.lang.management.OperatingSystemMXBean;
