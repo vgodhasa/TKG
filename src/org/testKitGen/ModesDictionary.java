@@ -138,7 +138,7 @@ public class ModesDictionary {
 								filteredSpecs.add(spec);
 							}
 						}
-						invalidSpecs = filteredSpecs;
+						invalidSpecs = (ArrayList<String>) filteredSpecs;
 						// if invalidSpecs array is empty, set it to none
 						if (invalidSpecs.size() == 0) {
 							invalidSpecs.add("none");
