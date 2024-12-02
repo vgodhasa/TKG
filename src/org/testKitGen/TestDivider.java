@@ -289,9 +289,21 @@ public class TestDivider {
 	}
 
 	private Queue<Map.Entry<String, Integer>> createDurationQueue() {
-		Queue<Map.Entry<String, Integer>> durationQueue = new PriorityQueue<>(
-			(a, b) -> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : b.getValue().compareTo(a.getValue())
-		);
+		Queue<Map.Entry<String, Integer>> durationQueue = new PriorityQueue<Map.Entry<String, Integer>>(
+			new Comparator<Map.Entry<String, Integer>>() {
+			@Override
+			public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) {
+				// Compare by value in descending order
+				if (a.getValue() == b.getValue()) {
+					// If values are equal, compare by key in descending order
+					return b.getKey().compareTo(a.getKey());
+				} else {
+					// Otherwise, compare by value in descending order
+					return b.getValue().compareTo(a.getValue());
+				}
+			}
+		}
+	);
 
 		List<String> allTests = new ArrayList<String>();
 		allTests.addAll(testsToExecute);
