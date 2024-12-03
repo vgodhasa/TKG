@@ -21,21 +21,14 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-//import java.lang.management.ManagementFactory;
+import java.lang.management.ManagementFactory;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-//import com.sun.management.OperatingSystemMXBean;
-import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
-
-//import com.ibm.lang.management.OperatingSystemMXBean;
-//import com.ibm.lang.management.ManagementFactory;
-
-
+import com.sun.management.OperatingSystemMXBean;
 
 public class MachineInfo {
 	public static final String[] UNAME_CMD = new String[] {"uname", "-a"};
@@ -288,27 +281,11 @@ public class MachineInfo {
 		putInfo(new Info("vmVersion", new String[] {"ManagementFactory.getRuntimeMXBean().getVmVersion()"}, ManagementFactory.getRuntimeMXBean().getVmVersion(), null));
 	}
 
-	/*private void getPhysicalMemoryInfo() {
+	private void getPhysicalMemoryInfo() {
 		OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 		putInfo(new Info("Total Physical Memory Size", new String[] {"osBean.getTotalPhysicalMemorySize()"}, String.valueOf(osBean.getTotalPhysicalMemorySize()), null));
 		putInfo(new Info("Free Physical Memory Size", new String[] {"osBean.getFreePhysicalMemorySize()"}, String.valueOf(osBean.getFreePhysicalMemorySize()), null));
-	}*/
-	
-
-	private void getPhysicalMemoryInfo() {
-		// Get IBM's OperatingSystemMXBean
-		OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
-
-		// Get total physical memory (this might be different in IBM JDK)
-		long totalMemory = osBean.getTotalPhysicalMemorySize();  // Check if this method exists in IBM JDK
-
-		// Get free physical memory (again, check IBM's available methods)
-		long freeMemory = osBean.getFreePhysicalMemorySize();  // This might be an alternative method
-
-		putInfo(new Info("Total Physical Memory Size", new String[] {"osBean.getTotalPhysicalMemorySize()"}, String.valueOf(totalMemory), null));
-		putInfo(new Info("Free Physical Memory Size", new String[] {"osBean.getFreePhysicalMemorySize()"}, String.valueOf(freeMemory), null));
 	}
-
 
 	private void getOtherInfo() {
 		putInfo(new Info("gcc version", GCC_VERSION_CMD, ce.execute(GCC_VERSION_CMD), null));
